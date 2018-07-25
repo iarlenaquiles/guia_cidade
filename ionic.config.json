@@ -1,0 +1,8 @@
+{
+  "name": "guia_cidade",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
