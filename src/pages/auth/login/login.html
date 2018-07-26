@@ -8,8 +8,22 @@
 
 <ion-content>
   <ion-slides pager="false" autoplay="2000" loop="true" speed="1500" effect="fade">
-    <ion-slide class="slide-background swiper-no-swiping" *ngFor="let item of backgrounds"
-    [ngStyle]="{'background-image': 'url('+ item +')'}">
+    <ion-slide class="slide-background swiper-no-swiping" *ngFor="let item of backgrounds" [ngStyle]="{'background-image': 'url('+ item +')'}">
     </ion-slide>
   </ion-slides>
+
+  <div class="login-container">
+    <form padding [formGroup]="loginForm" (submit)="login()" novalidate>
+
+      <ion-item>
+        <ion-input type="text" formControlName="email" placeholder="E-mail" clearInput clearOnEdit="false"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" formControlName="senha" placeholder="Senha" clearInput clearOnEdit="false"></ion-input>
+      </ion-item>
+
+      <button ion-button block outline color="light" [disabled]="!loginForm.valid" class="login-button">Login</button>
+    </form>
+  </div>
 </ion-content>
