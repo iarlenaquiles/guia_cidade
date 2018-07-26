@@ -6,6 +6,15 @@ page-login {
         background-size: cover;
     }
 
+    .slide-zoom {
+        height: 100%;
+        background: rgba(32, 32, 32, 0.2) !important;
+    }
+
+    ion-slide {
+        height: 100vh;
+    }
+    
     .scroll-content{
         margin-top: 0 !important;
         display: flex;
