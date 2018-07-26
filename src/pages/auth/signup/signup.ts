@@ -8,6 +8,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SignupPage {
 
+  backgrounds = [
+    'assets/imgs/background/background-1.jpeg',
+    'assets/imgs/background/background-2.jpg'
+  ];
+  
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
