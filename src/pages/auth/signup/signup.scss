@@ -33,4 +33,12 @@ page-signup {
         text-align: center;
         color: white;
     }
+
+    .signup-button{
+        text-transform: uppercase;
+        border-radius: 10px !important;
+        &.activated {
+            background-color: rgba(255, 255, 255, .4) !important;
+        }
+    }
 }
