@@ -12,4 +12,27 @@
     </ion-slide>
   </ion-slides>
 
+  <div class="signup-container">
+    <form padding [formGroup]="signupForm" (submit)="signup()" novalidate>
+      <ion-item>
+        <ion-input type="text" formControlName="nome" placeholder="Nome" clearInput clearOnEdit="false"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" formControlName="sobrenome" placeholder="Sobrenome" clearInput clearOnEdit="false"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="text" formControlName="email" placeholder="E-mail" clearInput clearOnEdit="false"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" formControlName="senha" placeholder="Senha" clearInput clearOnEdit="false"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input type="password" formControlName="senhaConfirmacao" placeholder="Repita a senha" clearInput clearOnEdit="false"></ion-input>
+      </ion-item>
+    </form>
+  </div>
 </ion-content>

@@ -22,4 +22,15 @@ page-signup {
         flex-direction: column;
         overflow: hidden;
     }
+
+    .signup-container{
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        width: 100%;
+        margin: 0 auto;
+        padding: 10vw;
+        text-align: center;
+        color: white;
+    }
 }
