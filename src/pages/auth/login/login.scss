@@ -14,7 +14,7 @@ page-login {
     ion-slide {
         height: 100vh;
     }
-    
+
     .scroll-content{
         margin-top: 0 !important;
         display: flex;
@@ -42,7 +42,7 @@ page-login {
     }
 
     .cadastro {
-        margin-top: 80%;
+        margin-top: 70%;
     }
 
     ion-item{
@@ -56,5 +56,37 @@ page-login {
 
     ::-webkit-input-placeholder {
         color: #fff !important;
+    }
+
+    .strike {
+        display: block;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    .strike > span {
+        position: relative;
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .strike > span:before, .strike > span:after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 9999px;
+        height: 1px;
+        background: #fff;
+    }
+
+    .strike > span:before{
+        right: 100%;
+        margin-right: 15px;
+    }
+
+    .strike > span::after {
+        left: 100%;
+        margin-left: 15px; 
     }
 }
