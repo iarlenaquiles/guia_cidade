@@ -29,4 +29,7 @@ export class LoginPage {
     console.log('ionViewDidLoad LoginPage');
   }
 
+  goToSignup() {
+    this.navCtrl.push('SignupPage');
+  }
 }
