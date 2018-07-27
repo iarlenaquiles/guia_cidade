@@ -85,4 +85,5 @@
         <variable name="APP_ID" value="272339153571280" />
         <variable name="APP_NAME" value="Guia Cidades" />
     </plugin>
+    <engine name="android" spec="~7.0.0" />
 </widget>
