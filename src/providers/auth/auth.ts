@@ -1,9 +1,9 @@
+import { Facebook } from '@ionic-native/facebook';
 import { Platform } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
-import { Facebook } from '@ionic-native/facebook';
 
 @Injectable()
 export class AuthProvider {
