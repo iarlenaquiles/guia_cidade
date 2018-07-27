@@ -6,11 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 @Injectable()
 export class AuthProvider {
 
-  constructor(public angularFireAuth: AngularFireAuth,
-    public angularFireDatabase: AngularFireDatabase,
-    public http: HttpClient) {
-
-  }
+  constructor(public angularFireAuth: AngularFireAuth, public angularFireDatabase: AngularFireDatabase) { }
 
   signupUser(usuario): any {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(usuario.email, usuario.senha).then((newUser) => {
