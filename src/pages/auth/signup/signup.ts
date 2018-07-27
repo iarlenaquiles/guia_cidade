@@ -64,7 +64,8 @@ export class SignupPage {
         });
 
         alert.present();
-      }, () => {
+      }, (error) => {
+        console.log(error);
         loading.dismiss();
         const alert = this.alert.create({
           title: 'Oops!',
