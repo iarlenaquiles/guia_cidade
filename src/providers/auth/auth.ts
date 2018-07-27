@@ -1,12 +1,17 @@
+import { Platform } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import firebase from 'firebase';
+import { Facebook } from '@ionic-native/facebook';
 
 @Injectable()
 export class AuthProvider {
 
-  constructor(public angularFireAuth: AngularFireAuth, public angularFireDatabase: AngularFireDatabase) { }
+  constructor(public platform: Platform,
+    public fb: Facebook,
+    public angularFireAuth: AngularFireAuth,
+    public angularFireDatabase: AngularFireDatabase) { }
 
   signupUser(usuario): any {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(usuario.email, usuario.senha).then((newUser) => {
@@ -36,6 +41,21 @@ export class AuthProvider {
     }, error => {
       throw new Error(error.message);
     });
+  }
+
+  facebookLogin() {
+    if (this.platform.is('cordova')) {
+      return this.fb.login(['email', 'public_profile']).then(res => {
+        const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
+        return firebase.auth().signInWithCredential(facebookCredential).then(data => {
+          console.log(data);
+        })
+      });
+    } else {
+      return this.angularFireAuth.auth
+        .signInWithPopup(new firebase.auth.FacebookAuthProvider())
+        .then(res => console.log(res));
+    }
   }
 
 }
