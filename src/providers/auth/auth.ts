@@ -1,7 +1,7 @@
 import { AngularFireDatabase } from 'angularfire2/database';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
+import firebase from 'firebase';
 
 @Injectable()
 export class AuthProvider {
@@ -15,9 +15,9 @@ export class AuthProvider {
         let userObject = {
           uid: uid,
           registeredDate: Date.now(),
-          name: usuario.nome + ' ' + usuario.sobrenome,
+          name: usuario.nome + " " + usuario.sobrenome,
           email: usuario.email,
-          photoUrl: ''
+          photoUrl: ""
         };
 
         newUser.user.updateProfile({
@@ -28,10 +28,11 @@ export class AuthProvider {
         return this.angularFireDatabase.list('userProfile').update(uid, userObject).then(() => true,
           error => {
             throw new Error(error.message);
-          });
+          }
+        )
       }, error => {
         throw new Error(error.message);
-      });
+      })
     }, error => {
       throw new Error(error.message);
     });
