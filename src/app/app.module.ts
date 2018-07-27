@@ -11,6 +11,8 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
+import { Facebook } from '@ionic-native/facebook';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyCwU50l6qTALC6PA7-tI3SU1cmUNHU6bkY",
   authDomain: "guia-cidades-ef9f3.firebaseapp.com",
@@ -39,7 +41,8 @@ export const firebaseConfig = {
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthProvider,
-    AngularFireDatabase
+    AngularFireDatabase,
+    Facebook
   ]
 })
 export class AppModule { }
