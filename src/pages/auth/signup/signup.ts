@@ -52,9 +52,28 @@ export class SignupPage {
       let loading = this.loading.create({
         content: 'Criando usuário...'
       });
+
       loading.present();
-      
-      this.authProvider.signupUser(this.signupForm.value);
+
+      this.authProvider.signupUser(this.signupForm.value).then(() => {
+        loading.dismiss();
+        const alert = this.alert.create({
+          title: 'Ebaaa!',
+          subTitle: 'Usuário cadastrado com sucesso',
+          buttons: ['OK']
+        });
+
+        alert.present();
+      }, () => {
+        loading.dismiss();
+        const alert = this.alert.create({
+          title: 'Oops!',
+          subTitle: 'Usuário  não cadastrado, tente novamente',
+          buttons: ['OK']
+        });
+
+        alert.present();
+      });
     }
   }
 
