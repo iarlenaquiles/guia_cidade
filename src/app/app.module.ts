@@ -12,11 +12,12 @@ import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/dat
 import { AngularFireAuthModule } from 'angularfire2/auth';
 
 export const firebaseConfig = {
-  apiKey: 'cccc',
-  authDomain: '',
-  databseUrl: '',
-  storageBucket: '',
-  messagingSenderId: ''
+  apiKey: "AIzaSyCwU50l6qTALC6PA7-tI3SU1cmUNHU6bkY",
+  authDomain: "guia-cidades-ef9f3.firebaseapp.com",
+  databaseURL: "https://guia-cidades-ef9f3.firebaseio.com",
+  projectId: "guia-cidades-ef9f3",
+  storageBucket: "guia-cidades-ef9f3.appspot.com",
+  messagingSenderId: "980492578919"
 }
 @NgModule({
   declarations: [
