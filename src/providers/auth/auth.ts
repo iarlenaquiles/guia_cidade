@@ -91,6 +91,19 @@ export class AuthProvider {
     });
   }
 
+  getUserByUid(uid) {
+    alert(uid);
+    return new Promise((resolve, reject) => {
+      var userRef = this.userProfile.child(uid);
+      userRef.once("value", function (snap) {
+        var user = snap.val();
+        resolve(user);
+      }, function(error){
+        reject(error);
+      });
+    });
+  }
+
   
 
 }
