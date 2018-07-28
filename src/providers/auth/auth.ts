@@ -67,7 +67,30 @@ export class AuthProvider {
   }
 
   socialLoginSuccess(firebaseData, provider) {
+    return this.getUserByUid(firebaseData.uid).then(user => {
+      let uid = firebaseData.uid;
+      if (!user) {
+        let { displayName, email, photoURL } = firebaseData.providerData[0];
 
+        let userObject = {
+          uid: uid,
+          registeredDate: Date.now(),
+          nome: displayName.match(/^(\S+)\s(.*)/).slice(1)[0],
+          sobrenome: displayName.match(/^(\S+)\s(.*)/).slice(1)[1],
+          email: email,
+          socialPhotoUrl: photoURL
+        };
+
+        return this.angularFireDatabase.list('userProfile').update(uid, userObject).then(() => true);
+      } else {
+        let userObject = { facebookVerified: true };
+        return this.angularFireDatabase.list('userProfile').update(uid, userObject).then(() => true);
+      }
+    }, error => {
+      console.log('social login firebase error', error)
+    });
   }
+
+  
 
 }
