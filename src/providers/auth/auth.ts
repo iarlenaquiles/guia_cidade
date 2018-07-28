@@ -8,10 +8,17 @@ import firebase from 'firebase';
 @Injectable()
 export class AuthProvider {
 
+  PROVIDER_FACEBOOK = "FACEBOOK";
+  userProfile: any;
+  fireAuth: any;
+
   constructor(public platform: Platform,
     public fb: Facebook,
     public angularFireAuth: AngularFireAuth,
-    public angularFireDatabase: AngularFireDatabase) { }
+    public angularFireDatabase: AngularFireDatabase) { 
+      this.fireAuth = firebase.auth();
+      this.userProfile = firebase.database().ref('/userProfile');
+    }
 
   signupUser(usuario): any {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(usuario.email, usuario.senha).then((newUser) => {
