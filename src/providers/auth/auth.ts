@@ -15,10 +15,10 @@ export class AuthProvider {
   constructor(public platform: Platform,
     public fb: Facebook,
     public angularFireAuth: AngularFireAuth,
-    public angularFireDatabase: AngularFireDatabase) { 
-      this.fireAuth = firebase.auth();
-      this.userProfile = firebase.database().ref('/userProfile');
-    }
+    public angularFireDatabase: AngularFireDatabase) {
+    this.fireAuth = firebase.auth();
+    this.userProfile = firebase.database().ref('/userProfile');
+  }
 
   signupUser(usuario): any {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(usuario.email, usuario.senha).then((newUser) => {
@@ -55,7 +55,8 @@ export class AuthProvider {
       return this.fb.login(['email', 'public_profile']).then(res => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
         return firebase.auth().signInWithCredential(facebookCredential).then(data => {
-          console.log(data);
+          alert(JSON.stringify(data));
+          this.socialLoginSuccess(data, this.PROVIDER_FACEBOOK);
         })
       });
     } else {
@@ -63,6 +64,10 @@ export class AuthProvider {
         .signInWithPopup(new firebase.auth.FacebookAuthProvider())
         .then(res => console.log(res));
     }
+  }
+
+  socialLoginSuccess(firebaseData, provider) {
+
   }
 
 }
