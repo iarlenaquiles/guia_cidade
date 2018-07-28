@@ -104,6 +104,8 @@ export class AuthProvider {
     });
   }
 
-  
+  getCurrentUser() {
+    return this.fireAuth;
+  }
 
 }
