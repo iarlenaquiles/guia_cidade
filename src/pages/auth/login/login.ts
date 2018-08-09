@@ -45,7 +45,7 @@ export class LoginPage {
 
     this.authProvider.facebookLogin().then(() => {
       loading.dismiss();
-      alert('Login Realizado');
+    
     }, error => {
       loading.dismiss();
       alert(JSON.stringify(error));
