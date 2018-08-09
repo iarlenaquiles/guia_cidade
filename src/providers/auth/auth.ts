@@ -62,11 +62,12 @@ export class AuthProvider {
     } else {
       return this.angularFireAuth.auth
         .signInWithPopup(new firebase.auth.FacebookAuthProvider())
-        .then(res => console.log(res));
+        .then(res => this.socialLoginSuccess(res, this.PROVIDER_FACEBOOK));
     }
   }
 
   socialLoginSuccess(firebaseData, provider) {
+    console.log(firebaseData.additionalUserInfo.profile);
     return this.getUserByUid(firebaseData.uid).then(user => {
       let uid = firebaseData.uid;
       if (!user) {
@@ -75,10 +76,10 @@ export class AuthProvider {
         let userObject = {
           uid: uid,
           registeredDate: Date.now(),
-          nome: displayName.match(/^(\S+)\s(.*)/).slice(1)[0],
-          sobrenome: displayName.match(/^(\S+)\s(.*)/).slice(1)[1],
+          nome: displayName.displayName.match(/^(\S+)\s(.*)/).slice(1)[0],
+          sobrenome: displayName.displayName.match(/^(\S+)\s(.*)/).slice(1)[1],
           email: email,
-          socialPhotoUrl: photoURL
+          photoUrl: photoURL
         };
 
         return this.angularFireDatabase.list('userProfile').update(uid, userObject).then(() => true);
@@ -98,9 +99,9 @@ export class AuthProvider {
       userRef.once("value", function (snap) {
         var user = snap.val();
         resolve(user);
-      }, function(error){
+      }, function (error) {
         reject(error);
-      });
+      })
     });
   }
 
