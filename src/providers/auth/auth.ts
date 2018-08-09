@@ -50,6 +50,10 @@ export class AuthProvider {
     });
   }
 
+  login(usuario) {
+    return this.angularFireAuth.auth.signInWithEmailAndPassword(usuario.email, usuario.senha);
+  }
+
   facebookLogin() {
     if (this.platform.is('cordova')) {
       return this.fb.login(['email', 'public_profile']).then(res => {
