@@ -1,4 +1,4 @@
-import { Facebook } from '@ionic-native/facebook';
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Platform } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Injectable } from '@angular/core';
@@ -59,10 +59,9 @@ export class AuthProvider {
       return this.fb.login(['email', 'public_profile']).then(res => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
         return firebase.auth().signInWithCredential(facebookCredential).then(data => {
-          alert(JSON.stringify(data));
           this.socialLoginSuccess(data, this.PROVIDER_FACEBOOK);
-        })
-      });
+        });
+      })
     } else {
       return this.angularFireAuth.auth
         .signInWithPopup(new firebase.auth.FacebookAuthProvider())
@@ -71,8 +70,8 @@ export class AuthProvider {
   }
 
   socialLoginSuccess(firebaseData, provider) {
-    console.log(firebaseData.additionalUserInfo.profile);
     return this.getUserByUid(firebaseData.uid).then(user => {
+      console.log(user);
       let uid = firebaseData.uid;
       if (!user) {
         let { displayName, email, photoURL } = firebaseData.providerData[0];
@@ -83,7 +82,7 @@ export class AuthProvider {
           nome: displayName.displayName.match(/^(\S+)\s(.*)/).slice(1)[0],
           sobrenome: displayName.displayName.match(/^(\S+)\s(.*)/).slice(1)[1],
           email: email,
-          photoUrl: photoURL
+          socialPhotoUrl: photoURL,
         };
 
         return this.angularFireDatabase.list('userProfile').update(uid, userObject).then(() => true);
@@ -97,7 +96,6 @@ export class AuthProvider {
   }
 
   getUserByUid(uid) {
-    alert(uid);
     return new Promise((resolve, reject) => {
       var userRef = this.userProfile.child(uid);
       userRef.once("value", function (snap) {
