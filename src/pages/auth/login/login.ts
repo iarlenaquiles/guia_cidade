@@ -71,10 +71,9 @@ export class LoginPage {
 
     this.authProvider.facebookLogin().then(() => {
       loading.dismiss();
-
+      this.navCtrl.setRoot('HomePage');
     }, error => {
       loading.dismiss();
-      alert(JSON.stringify(error));
     });
   }
 }
