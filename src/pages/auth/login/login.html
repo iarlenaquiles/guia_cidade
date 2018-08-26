@@ -8,8 +8,8 @@
 
 <ion-content>
   <div class="login-container">
-      <img src="assets/imgs/retangulo.png"/>
-    <form padding [formGroup]="loginForm" (submit)="login()" novalidate>
+    <img src="assets/imgs/retangulo.png" />
+    <form [formGroup]="loginForm" (submit)="login()" novalidate>
 
       <ion-item>
         <ion-input type="text" formControlName="email" placeholder="E-mail" clearInput clearOnEdit="false"></ion-input>
