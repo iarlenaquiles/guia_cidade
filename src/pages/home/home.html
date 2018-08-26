@@ -5,11 +5,28 @@
 
 <ion-content>
   <ion-card>
-    <ion-card-header>
-      Header
-    </ion-card-header>
-    <ion-card-content>
-      The British use the term "header", but the American term "head-shot" the English simply refuse to adopt.
-    </ion-card-content>
+    <ion-slides pager>
+      <ion-slide *ngFor="let foto of backgrounds">
+        <img [src]="foto">
+      </ion-slide>
+    </ion-slides>
   </ion-card>
+  Categorias
+  <ion-list inset>
+    <button ion-item (click)="details()">
+      Alimentação
+    </button>
+
+    <button ion-item (click)="details()">
+      Autos e motos
+    </button>
+
+    <button ion-item (click)="details()">
+      Clinicas
+    </button>
+
+    <button ion-item (click)="details()">
+      Comunicação
+    </button>
+  </ion-list>
 </ion-content>

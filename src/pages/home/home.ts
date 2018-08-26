@@ -8,8 +8,16 @@ import { IonicPage, NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  backgrounds = [
+    'assets/imgs/background/background-1.jpeg',
+    'assets/imgs/background/background-2.jpg'
+  ];
+
   constructor(public navCtrl: NavController) {
 
   }
 
+  details() {
+    this.navCtrl.push('CategoriaPage');
+  }
 }
