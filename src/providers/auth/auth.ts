@@ -17,7 +17,7 @@ export class AuthProvider {
     public angularFireAuth: AngularFireAuth,
     public angularFireDatabase: AngularFireDatabase) {
     this.fireAuth = firebase.auth();
-    this.userProfile = firebase.database().ref('/userProfile');
+    this.userProfile = firebase.database().ref('/userProfile');    
   }
 
   signupUser(usuario): any {
@@ -59,28 +59,29 @@ export class AuthProvider {
       return this.fb.login(['email', 'public_profile']).then(res => {
         const facebookCredential = firebase.auth.FacebookAuthProvider.credential(res.authResponse.accessToken);
         return firebase.auth().signInWithCredential(facebookCredential).then(data => {
-          this.socialLoginSuccess(data, this.PROVIDER_FACEBOOK);
+          this.socialLoginSuccess(data);
         });
-      })
+      }).catch((error) => console.log(error))
     } else {
       return this.angularFireAuth.auth
         .signInWithPopup(new firebase.auth.FacebookAuthProvider())
-        .then(res => this.socialLoginSuccess(res, this.PROVIDER_FACEBOOK));
+        .then(res => this.socialLoginSuccess(res))
+        .catch((erro) => console.log(erro))
     }
   }
 
-  socialLoginSuccess(firebaseData, provider) {
-    return this.getUserByUid(firebaseData.uid).then(user => {
-      console.log(user);
-      let uid = firebaseData.uid;
+  socialLoginSuccess(firebaseData) {
+    return this.getUserByUid(firebaseData.user.uid).then(user => {
+      let uid = firebaseData.user.uid;
       if (!user) {
-        let { displayName, email, photoURL } = firebaseData.providerData[0];
+        let { email, first_name, last_name } = firebaseData.additionalUserInfo.profile;
+        let { photoURL } = firebaseData.user;
 
         let userObject = {
           uid: uid,
           registeredDate: Date.now(),
-          nome: displayName.displayName.match(/^(\S+)\s(.*)/).slice(1)[0],
-          sobrenome: displayName.displayName.match(/^(\S+)\s(.*)/).slice(1)[1],
+          nome: first_name,
+          sobrenome: last_name,
           email: email,
           socialPhotoUrl: photoURL,
         };
@@ -103,7 +104,7 @@ export class AuthProvider {
         resolve(user);
       }, function (error) {
         reject(error);
-      })
+      });
     });
   }
 
