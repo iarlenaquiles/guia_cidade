@@ -1,0 +1,35 @@
+<!--
+  Generated template for the PerfilEmpresaPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Mac Lanche</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-card>
+    <ion-slides pager>
+      <ion-slide *ngFor="let foto of backgrounds">
+        <img [src]="foto">
+      </ion-slide>
+    </ion-slides>
+  </ion-card>
+
+  <ion-list>
+      <ion-item>Telefone: (88) 998875757</ion-item>
+      <ion-item>Endereço: Av Rodrigues jr, 123</ion-item>
+      <ion-item>Horário de funcionamento: </ion-item>
+      <ion-item>Seg-Sab/18:00 às 23:00</ion-item>
+      <ion-item>Informações</ion-item>
+      <ion-item>Pontualidade</ion-item>
+      <ion-item>Qualidade</ion-item>
+      <ion-item>Preço</ion-item>
+    </ion-list>
+</ion-content>
