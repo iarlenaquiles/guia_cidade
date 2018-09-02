@@ -7,11 +7,6 @@
 
 
 <ion-content>
-  <ion-slides pager="false" autoplay="2000" loop="true" speed="1500" effect="fade">
-    <ion-slide class="slide-background swiper-no-swiping" *ngFor="let item of backgrounds" [ngStyle]="{'background-image': 'url('+ item +')'}">
-    </ion-slide>
-  </ion-slides>
-
   <div class="signup-container">
     <form padding [formGroup]="signupForm" (submit)="signup()" novalidate>
       <ion-item>
