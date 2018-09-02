@@ -5,13 +5,13 @@
 
 <ion-content>
   <ion-card>
-    <ion-slides pager>
-      <ion-slide *ngFor="let foto of backgrounds">
+    <ion-slides pager="false" autoplay="2000" loop="true" speed="1500" effect="fade">
+      <ion-slide class="slide-background swiper-no-swiping" *ngFor="let foto of backgrounds">
         <img [src]="foto">
       </ion-slide>
     </ion-slides>
   </ion-card>
-  Categorias
+  
   <ion-list inset>
     <button ion-item (click)="details()">
       Alimentação

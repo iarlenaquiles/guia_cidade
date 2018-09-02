@@ -1,3 +1,23 @@
 page-home {
 
+    .slide-background{
+        border-color: transparent;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .slide-zoom {
+        height: 100%;
+        background: black !important;
+    }
+
+    ion-slide {
+        height: 100vh;;
+    }
+
+    button {
+        background: #800020 !important;
+        margin: 5px !important;
+    }
 }
